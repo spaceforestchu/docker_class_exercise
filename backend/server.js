@@ -5,6 +5,13 @@ const { Pool } = require('pg');
 const app = express();
 const PORT = process.env.PORT || 8000;
 
+// Debug logging - see what env vars are available
+console.log('=== Environment Variables Debug ===');
+console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+console.log('DATABASE_URL length:', process.env.DATABASE_URL?.length || 0);
+console.log('DB_HOST:', process.env.DB_HOST);
+console.log('===================================');
+
 // Middleware
 app.use(cors());
 app.use(express.json());
