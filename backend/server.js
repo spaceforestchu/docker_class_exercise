@@ -113,6 +113,14 @@ app.delete('/api/todos/:id', async (req, res) => {
 // Start server
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
-  console.log(`Database: ${process.env.DB_HOST || 'localhost'}:${process.env.DB_PORT || 5432}`);
+
+  // Show actual connection being used
+  if (process.env.DATABASE_URL) {
+    const dbUrl = new URL(process.env.DATABASE_URL);
+    console.log(`Database: ${dbUrl.hostname}:${dbUrl.port || 5432} (via DATABASE_URL)`);
+  } else {
+    console.log(`Database: ${process.env.DB_HOST || 'localhost'}:${process.env.DB_PORT || 5432}`);
+  }
+
   initDB();
 });
